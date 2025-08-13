@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean Money, Clean Future - Partner Risk Assessment</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>Clean Money, Clean Future</h1>
+            <p class="subtitle">Partner Risk Assessment Tool</p>
+            <div class="progress-container" id="progressContainer" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-text" id="progressText">Step 1 of 7</span>
+            </div>
+        </header>
+
+        <!-- Welcome Page -->
+        <section id="welcomePage" class="page active">
+            <div class="welcome-content">
+                <div class="hero-text">
+                    <h2>Protect Your Financial Future</h2>
+                    <p>This comprehensive assessment helps evaluate potential financial risks in your relationship. Make informed decisions about shared finances, asset protection, and legal safeguards.</p>
+                </div>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Risk Assessment</h3>
+                        <p>Evaluate 8 key risk categories with weighted scoring</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Decision Support</h3>
+                        <p>Get clear recommendations and safeguard suggestions</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Educational Resources</h3>
+                        <p>Learn about financial red flags and protection strategies</p>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn--primary btn--lg" id="startAssessment">Start New Assessment</button>
+                    <button class="btn btn--secondary btn--lg" id="viewEducation">Educational Resources</button>
+                </div>
+
+                <div class="disclaimer">
+                    <p><strong>Disclaimer:</strong> This tool provides educational risk assessment only, not legal or financial advice. Always consult qualified professionals for important financial decisions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assessment Steps -->
+        <section id="assessmentPage" class="page">
+            <!-- Step 1: Context & Setup -->
+            <div class="step" id="step1">
+                <h2>Step 1: Context & Setup</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="yourName" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Partner's Name</label>
+                        <input type="text" class="form-control" id="partnerName" placeholder="Enter partner's name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Country/Jurisdiction</label>
+                        <select class="form-control" id="jurisdiction">
+                            <option value="">Select Country</option>
+                            <option value="us">United States</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="ca">Canada</option>
+                            <option value="au">Australia</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Relationship Stage</label>
+                        <select class="form-control" id="relationshipStage">
+                            <option value="">Select Stage</option>
+                            <option value="dating">Dating</option>
+                            <option value="engaged">Engaged</option>
+                            <option value="considering-marriage">Considering Marriage</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Planned Asset Arrangement</label>
+                        <select class="form-control" id="assetArrangement">
+                            <option value="">Select Arrangement</option>
+                            <option value="merge-all">Merge All Assets</option>
+                            <option value="keep-separate">Keep Separate</option>
+                            <option value="hybrid">Hybrid Approach</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Number of Dependents</label>
+                        <select class="form-control" id="dependents">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5+">5+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Prenuptial Agreement Consideration</label>
+                        <select class="form-control" id="prenupConsideration">
+                            <option value="">Select Option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                            <option value="undecided">Undecided</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Assessment Timeframe</label>
+                        <select class="form-control" id="timeframe">
+                            <option value="">Select Timeframe</option>
+                            <option value="immediate">Immediate</option>
+                            <option value="6-months">6 Months</option>
+                            <option value="1-year">1 Year</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Income & Employment -->
+            <div class="step" id="step2" style="display: none;">
+                <h2>Step 2: Income & Employment Assessment</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Primary Income Sources (Check all that apply)</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="incomeSource" value="salary"> Salary</label>
+                            <label><input type="checkbox" name="incomeSource" value="business"> Business</label>
+                            <label><input type="checkbox" name="incomeSource" value="investments"> Investments</label>
+                            <label><input type="checkbox" name="incomeSource" value="inheritance"> Inheritance</label>
+                            <label><input type="checkbox" name="incomeSource" value="other"> Other</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Employment Stability</label>
+                        <select class="form-control" id="employmentStability">
+                            <option value="">Select Stability</option>
+                            <option value="0-1">0-1 years current job</option>
+                            <option value="1-3">1-3 years current job</option>
+                            <option value="3-5">3-5 years current job</option>
+                            <option value="5+">5+ years current job</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Income Consistency</label>
+                        <select class="form-control" id="incomeConsistency">
+                            <option value="">Select Consistency</option>
+                            <option value="very-stable">Very Stable</option>
+                            <option value="stable">Stable</option>
+                            <option value="variable">Variable</option>
+                            <option value="very-variable">Very Variable</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Annual Income Range</label>
+                        <select class="form-control" id="incomeRange">
+                            <option value="">Select Range</option>
+                            <option value="0-25k">$0 - $25,000</option>
+                            <option value="25-50k">$25,001 - $50,000</option>
+                            <option value="50-100k">$50,001 - $100,000</option>
+                            <option value="100-250k">$100,001 - $250,000</option>
+                            <option value="250k+">$250,000+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Business Ownership</label>
+                        <select class="form-control" id="businessOwnership">
+                            <option value="">Select Option</option>
+                            <option value="none">No Business Ownership</option>
+                            <option value="minority">Minority Stake</option>
+                            <option value="majority">Majority Owner</option>
+                            <option value="sole">Sole Proprietor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Professional Credentials</label>
+                        <input type="text" class="form-control" id="credentials" placeholder="List relevant licenses/certifications">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Assets & Wealth -->
+            <div class="step" id="step3" style="display: none;">
+                <h2>Step 3: Assets & Wealth Assessment</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Real Estate Ownership</label>
+                        <select class="form-control" id="realEstate">
+                            <option value="">Select Option</option>
+                            <option value="none">No Real Estate</option>
+                            <option value="primary">Primary Residence Only</option>
+                            <option value="multiple">Multiple Properties</option>
+                            <option value="commercial">Commercial Properties</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Investment Portfolio Value</label>
+                        <select class="form-control" id="investments">
+                            <option value="">Select Range</option>
+                            <option value="none">No Investments</option>
+                            <option value="under-50k">Under $50,000</option>
+                            <option value="50k-250k">$50,000 - $250,000</option>
+                            <option value="250k-1m">$250,000 - $1,000,000</option>
+                            <option value="over-1m">Over $1,000,000</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">High-Value Assets</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="highValueAssets" value="luxury-vehicles"> Luxury Vehicles</label>
+                            <label><input type="checkbox" name="highValueAssets" value="art"> Art/Collectibles</label>
+                            <label><input type="checkbox" name="highValueAssets" value="jewelry"> Jewelry</label>
+                            <label><input type="checkbox" name="highValueAssets" value="other"> Other High-Value Items</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Bank Account Balances</label>
+                        <select class="form-control" id="bankBalances">
+                            <option value="">Select Range</option>
+                            <option value="under-10k">Under $10,000</option>
+                            <option value="10k-50k">$10,000 - $50,000</option>
+                            <option value="50k-250k">$50,000 - $250,000</option>
+                            <option value="over-250k">Over $250,000</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Gifts Received (Large amounts)</label>
+                        <select class="form-control" id="giftsReceived">
+                            <option value="">Select Option</option>
+                            <option value="none">No Significant Gifts</option>
+                            <option value="family">Family Gifts</option>
+                            <option value="business">Business-Related Gifts</option>
+                            <option value="unknown-source">Unknown Source Gifts</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Inheritance Status</label>
+                        <select class="form-control" id="inheritance">
+                            <option value="">Select Status</option>
+                            <option value="none">No Inheritance</option>
+                            <option value="received">Inheritance Received</option>
+                            <option value="expected">Inheritance Expected</option>
+                            <option value="disputed">Inheritance Disputed</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Debts & Liabilities -->
+            <div class="step" id="step4" style="display: none;">
+                <h2>Step 4: Debts & Liabilities</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Credit Card Debt Level</label>
+                        <select class="form-control" id="creditCardDebt">
+                            <option value="">Select Level</option>
+                            <option value="none">No Credit Card Debt</option>
+                            <option value="low">Low (Under $5,000)</option>
+                            <option value="moderate">Moderate ($5,000 - $25,000)</option>
+                            <option value="high">High (Over $25,000)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Student Loans</label>
+                        <select class="form-control" id="studentLoans">
+                            <option value="">Select Option</option>
+                            <option value="none">No Student Loans</option>
+                            <option value="low">Under $50,000</option>
+                            <option value="moderate">$50,000 - $150,000</option>
+                            <option value="high">Over $150,000</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mortgages</label>
+                        <select class="form-control" id="mortgages">
+                            <option value="">Select Option</option>
+                            <option value="none">No Mortgages</option>
+                            <option value="primary">Primary Residence Only</option>
+                            <option value="multiple">Multiple Mortgages</option>
+                            <option value="commercial">Commercial Mortgages</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Business Debts/Guarantees</label>
+                        <select class="form-control" id="businessDebts">
+                            <option value="">Select Option</option>
+                            <option value="none">No Business Debts</option>
+                            <option value="minor">Minor Business Debt</option>
+                            <option value="significant">Significant Business Debt</option>
+                            <option value="guarantees">Personal Guarantees</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tax Debt/Liens</label>
+                        <select class="form-control" id="taxDebt">
+                            <option value="">Select Option</option>
+                            <option value="none">No Tax Issues</option>
+                            <option value="minor">Minor Tax Debt</option>
+                            <option value="significant">Significant Tax Debt</option>
+                            <option value="liens">Tax Liens Filed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Bankruptcy History</label>
+                        <select class="form-control" id="bankruptcy">
+                            <option value="">Select Option</option>
+                            <option value="none">No Bankruptcy</option>
+                            <option value="discharged">Discharged Bankruptcy</option>
+                            <option value="recent">Recent Bankruptcy</option>
+                            <option value="multiple">Multiple Bankruptcies</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Source of Funds -->
+            <div class="step" id="step5" style="display: none;">
+                <h2>Step 5: Source of Funds Verification</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Available Documentation</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="documentation" value="tax-returns"> Tax Returns</label>
+                            <label><input type="checkbox" name="documentation" value="bank-statements"> Bank Statements</label>
+                            <label><input type="checkbox" name="documentation" value="pay-stubs"> Pay Stubs</label>
+                            <label><input type="checkbox" name="documentation" value="business-financials"> Business Financials</label>
+                            <label><input type="checkbox" name="documentation" value="investment-statements"> Investment Statements</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Lifestyle vs Income Consistency</label>
+                        <select class="form-control" id="lifestyleConsistency">
+                            <option value="">Select Assessment</option>
+                            <option value="consistent">Lifestyle Matches Income</option>
+                            <option value="below">Lifestyle Below Income</option>
+                            <option value="slightly-above">Lifestyle Slightly Above Income</option>
+                            <option value="significantly-above">Lifestyle Significantly Above Income</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Cash-Heavy Business Involvement</label>
+                        <select class="form-control" id="cashBusiness">
+                            <option value="">Select Option</option>
+                            <option value="none">No Cash Business</option>
+                            <option value="minor">Minor Cash Component</option>
+                            <option value="significant">Significant Cash Business</option>
+                            <option value="primarily-cash">Primarily Cash Business</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Offshore Accounts/Structures</label>
+                        <select class="form-control" id="offshore">
+                            <option value="">Select Option</option>
+                            <option value="none">No Offshore Accounts</option>
+                            <option value="disclosed">Disclosed Offshore Accounts</option>
+                            <option value="undisclosed">Suspected Undisclosed Accounts</option>
+                            <option value="complex">Complex Offshore Structures</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Cryptocurrency Holdings</label>
+                        <select class="form-control" id="cryptocurrency">
+                            <option value="">Select Option</option>
+                            <option value="none">No Cryptocurrency</option>
+                            <option value="minor">Minor Holdings</option>
+                            <option value="significant">Significant Holdings</option>
+                            <option value="unclear-source">Unclear Source Holdings</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Legal & Compliance -->
+            <div class="step" id="step6" style="display: none;">
+                <h2>Step 6: Legal & Compliance Factors</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Tax Compliance Status</label>
+                        <select class="form-control" id="taxCompliance">
+                            <option value="">Select Status</option>
+                            <option value="compliant">Fully Compliant</option>
+                            <option value="minor-issues">Minor Issues</option>
+                            <option value="significant-issues">Significant Issues</option>
+                            <option value="non-compliant">Non-Compliant</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pending Investigations/Litigation</label>
+                        <select class="form-control" id="investigations">
+                            <option value="">Select Option</option>
+                            <option value="none">None</option>
+                            <option value="civil">Civil Litigation</option>
+                            <option value="criminal">Criminal Investigation</option>
+                            <option value="regulatory">Regulatory Investigation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Sanctions/Adverse Media</label>
+                        <select class="form-control" id="sanctions">
+                            <option value="">Select Option</option>
+                            <option value="none">No Issues</option>
+                            <option value="minor-media">Minor Adverse Media</option>
+                            <option value="significant-media">Significant Adverse Media</option>
+                            <option value="sanctions">Sanctions Exposure</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Politically Exposed Person (PEP) Status</label>
+                        <select class="form-control" id="pepStatus">
+                            <option value="">Select Status</option>
+                            <option value="none">No PEP Status</option>
+                            <option value="family">PEP Family Member</option>
+                            <option value="associate">PEP Associate</option>
+                            <option value="direct">Direct PEP</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Criminal History (Financial)</label>
+                        <select class="form-control" id="criminalHistory">
+                            <option value="">Select Option</option>
+                            <option value="none">No Criminal History</option>
+                            <option value="minor">Minor Financial Offenses</option>
+                            <option value="significant">Significant Financial Crimes</option>
+                            <option value="money-laundering">Money Laundering Related</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 7: Red Flags -->
+            <div class="step" id="step7" style="display: none;">
+                <h2>Step 7: Red Flags Assessment</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Financial Information Sharing</label>
+                        <select class="form-control" id="informationSharing">
+                            <option value="">Select Assessment</option>
+                            <option value="open">Very Open and Transparent</option>
+                            <option value="somewhat-open">Somewhat Open</option>
+                            <option value="reluctant">Reluctant to Share</option>
+                            <option value="secretive">Very Secretive</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Inconsistent Stories</label>
+                        <select class="form-control" id="inconsistentStories">
+                            <option value="">Select Assessment</option>
+                            <option value="none">Consistent Information</option>
+                            <option value="minor">Minor Inconsistencies</option>
+                            <option value="significant">Significant Inconsistencies</option>
+                            <option value="major">Major Contradictions</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Pressure for Quick Financial Decisions</label>
+                        <select class="form-control" id="pressureDecisions">
+                            <option value="">Select Assessment</option>
+                            <option value="none">No Pressure</option>
+                            <option value="mild">Mild Pressure</option>
+                            <option value="significant">Significant Pressure</option>
+                            <option value="extreme">Extreme Pressure</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Control Over Financial Access</label>
+                        <select class="form-control" id="financialControl">
+                            <option value="">Select Assessment</option>
+                            <option value="none">No Control Issues</option>
+                            <option value="minor">Minor Control Behavior</option>
+                            <option value="significant">Significant Control</option>
+                            <option value="complete">Complete Financial Control</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Associates with Questionable Backgrounds</label>
+                        <select class="form-control" id="questionableAssociates">
+                            <option value="">Select Assessment</option>
+                            <option value="none">No Concerning Associates</option>
+                            <option value="minor">Some Questionable Associates</option>
+                            <option value="significant">Many Questionable Associates</option>
+                            <option value="criminal">Known Criminal Associates</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Frequent Address/Jurisdiction Changes</label>
+                        <select class="form-control" id="frequentMoves">
+                            <option value="">Select Assessment</option>
+                            <option value="stable">Stable Residence History</option>
+                            <option value="occasional">Occasional Moves</option>
+                            <option value="frequent">Frequent Moves</option>
+                            <option value="suspicious">Suspicious Movement Pattern</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="step-navigation">
+                <button class="btn btn--secondary" id="prevStep" style="display: none;">Previous</button>
+                <button class="btn btn--primary" id="nextStep">Next</button>
+                <button class="btn btn--primary" id="calculateRisk" style="display: none;">Calculate Risk</button>
+            </div>
+        </section>
+
+        <!-- Results Page -->
+        <section id="resultsPage" class="page">
+            <h2>Risk Assessment Results</h2>
+            
+            <div class="results-summary">
+                <div class="score-display">
+                    <div class="score-circle" id="scoreCircle">
+                        <span class="score-value" id="scoreValue">0</span>
+                        <span class="score-label">Clean Money Score</span>
+                    </div>
+                    <div class="risk-level" id="riskLevel">
+                        <span class="risk-label" id="riskLabel">Calculating...</span>
+                        <div class="confidence" id="confidence">Confidence: High</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-charts">
+                <div class="chart-section">
+                    <h3>Risk Category Breakdown</h3>
+                    <div class="chart-container" style="position: relative; height: 400px;">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-section">
+                    <h3>Risk Assessment Overview</h3>
+                    <div class="chart-container" style="position: relative; height: 300px;">
+                        <canvas id="riskChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recommendations" id="recommendations">
+                <h3>Recommendations</h3>
+                <div id="recommendationContent"></div>
+            </div>
+
+            <div class="results-actions">
+                <button class="btn btn--primary" id="viewEducation2">Educational Resources</button>
+                <button class="btn btn--secondary" id="startOver">Start New Assessment</button>
+            </div>
+        </section>
+
+        <!-- Educational Resources -->
+        <section id="educationPage" class="page">
+            <h2>Educational Resources</h2>
+            
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>What is "Dirty Money"?</h3>
+                    <p>Money obtained through illegal means including drug trafficking, corruption, tax evasion, fraud, or other criminal activities. Understanding the source of your partner's wealth is crucial for protecting yourself legally and financially.</p>
+                </div>
+                
+                <div class="education-card">
+                    <h3>Money Laundering</h3>
+                    <p>The process of making illegally obtained money appear legitimate through complex transfers and transactions. Be aware of unexplained wealth that doesn't match documented income sources.</p>
+                </div>
+                
+                <div class="education-card">
+                    <h3>Source of Funds</h3>
+                    <p>Documentation proving where money or assets originated, including employment, business income, investments, gifts, or inheritance. Legitimate wealth should have clear, verifiable documentation.</p>
+                </div>
+                
+                <div class="education-card">
+                    <h3>Politically Exposed Persons (PEP)</h3>
+                    <p>Individuals with prominent public positions who may have increased corruption risk. This includes government officials, their family members, and close associates who may face enhanced scrutiny.</p>
+                </div>
+                
+                <div class="education-card">
+                    <h3>Financial Abuse Warning Signs</h3>
+                    <ul>
+                        <li>Controlling access to bank accounts or financial information</li>
+                        <li>Preventing you from working or accessing your own money</li>
+                        <li>Hiding financial documents or being secretive about money</li>
+                        <li>Pressuring you to sign financial documents without explanation</li>
+                        <li>Stealing your identity or using your credit without permission</li>
+                    </ul>
+                </div>
+                
+                <div class="education-card">
+                    <h3>Know Your Customer (KYC)</h3>
+                    <p>Processes used by financial institutions to verify identity and assess money laundering risks. Understanding these processes helps you recognize legitimate versus suspicious financial behavior.</p>
+                </div>
+                
+                <div class="education-card">
+                    <h3>Common Red Flags</h3>
+                    <ul>
+                        <li>Lifestyle that doesn't match declared income</li>
+                        <li>Reluctance to provide financial documentation</li>
+                        <li>Cash-heavy business with unclear records</li>
+                        <li>Frequent unexplained large transactions</li>
+                        <li>Offshore accounts without clear business purpose</li>
+                        <li>Associates with questionable backgrounds</li>
+                    </ul>
+                </div>
+                
+                <div class="education-card">
+                    <h3>Protection Strategies</h3>
+                    <ul>
+                        <li>Prenuptial agreements with asset disclosure requirements</li>
+                        <li>Separate bank accounts and credit monitoring</li>
+                        <li>Professional background checks and verification</li>
+                        <li>Legal consultation before major financial commitments</li>
+                        <li>Regular financial reviews and audit rights</li>
+                        <li>Insurance and asset protection planning</li>
+                    </ul>
+                </div>
+                
+                <div class="education-card">
+                    <h3>When to Seek Professional Help</h3>
+                    <ul>
+                        <li>Significant unexplained wealth or income</li>
+                        <li>Complex business structures or offshore involvement</li>
+                        <li>Criminal history or ongoing legal issues</li>
+                        <li>High-value assets requiring protection</li>
+                        <li>International or cross-border relationships</li>
+                        <li>Signs of financial abuse or control</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="education-actions">
+                <button class="btn btn--secondary" id="backToWelcome">Back to Welcome</button>
+                <button class="btn btn--primary" id="backToAssessment">Back to Assessment</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
